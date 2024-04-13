@@ -10,17 +10,11 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the rest of app's source code from  host to image filesystem.
+# Copy the rest of app's source code from host to image filesystem.
 COPY . .
 
-# Build the app
-RUN npm run build
-
-# Install http-server to serve the build folder
-RUN npm install -g http-server
-
 # Expose the port the app runs on
-EXPOSE 5575
+EXPOSE 3000
 
 # Serve the app using http-server
-CMD ["http-server", "build", "-p", "5575"]
+CMD ["npm", "run", "dev"]
